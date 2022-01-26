@@ -8,13 +8,6 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
-# Local scripts
-if [[ -d ~/.local/bashrc.d/ ]]; then
-    for f in $(ls ~/.local/bashrc.d); do
-        . ~/.local/bashrc.d/$f
-    done
-fi
-
 # -------------
 # - Functions -
 # -------------
@@ -162,3 +155,13 @@ if [[ -n $SSHHOME ]]; then
         export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
     fi
 fi
+
+# ---------------------
+# - localized scripts -
+# ---------------------
+if [[ -d ~/.local/bashrc.d/ ]]; then
+    for f in ~/.local/bashrc.d/*; do
+        . "$f"
+    done
+fi
+
