@@ -1,3 +1,7 @@
+" ---------
+" - LOCAL -
+" ---------
+
 " Load any local overrides
 if !empty(glob("~/.local/vim/"))
   source ~/.local/vim/*
@@ -9,8 +13,9 @@ endif
 "
 " Install vim-plug plugins
 call plug#begin('~/.vim/plugged')
-" Vim-go (sytanx)
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Vim-go/govim (sytanx)
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'govim/govim'
 " Vim-Puppet (syntax)
 Plug 'rodjek/vim-puppet'
 " Vim-sluth (autoindent)
