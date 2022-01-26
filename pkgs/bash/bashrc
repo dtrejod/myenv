@@ -77,7 +77,12 @@ fi
 # - Setup Prompt -
 # ----------------
 unset PROMPT_COMMAND
-export PS1="\[\033[38;5;20m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;2m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;160m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\][$SHLVL]\\$ \[$(tput sgr0)\]"
+parse_git_branch() {
+  if [ -n "$(git rev-parse --git-dir 2> /dev/null)" ]; then
+    echo "($(git rev-parse --abbrev-ref HEAD))"
+  fi
+}
+export PS1="\[\033[38;5;20m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;2m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;160m\]\w\[$(tput sgr0)\] \$(parse_git_branch) \[\033[38;5;15m\][$SHLVL]\\$ \[$(tput sgr0)\]"
 
 # --------
 # - DIRS -
