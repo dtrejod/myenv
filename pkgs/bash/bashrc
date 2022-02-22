@@ -2,7 +2,10 @@
 # ~/.bashrc
 #
 # If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+case $- in
+  *i*) ;;
+    *) return;;
+esac
 
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
@@ -41,6 +44,45 @@ stty -ixon
 # Don't store duplicate/space prefixed commands in history
 export HISTCONTROL=ignoreboth
 
+# --------------
+# - oh-my-bash -
+# --------------
+# Path to your oh-my-bash installation.
+export OSH=~/.oh-my-bash
+
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-bash is loaded.
+OSH_THEME="tonotdo"
+
+# Which completions would you like to load? (completions can be found in ~/.oh-my-bash/completions/*)
+# Custom completions may be added to ~/.oh-my-bash/custom/completions/
+# Example format: completions=(ssh git bundler gem pip pip3)
+# Add wisely, as too many completions slow down shell startup.
+completions=(
+  git
+  ssh
+)
+
+# Which aliases would you like to load? (aliases can be found in ~/.oh-my-bash/aliases/*)
+# Custom aliases may be added to ~/.oh-my-bash/custom/aliases/
+# Example format: aliases=(vagrant composer git-avh)
+# Add wisely, as too many aliases slow down shell startup.
+aliases=(
+  general
+)
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-bash/plugins/*)
+# Custom plugins may be added to ~/.oh-my-bash/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+  git
+  bashmarks
+  brew
+)
+
+source "$OSH"/oh-my-bash.sh
+
 # ------
 # - Go -
 # ------
@@ -76,13 +118,13 @@ fi
 # ----------------
 # - Setup Prompt -
 # ----------------
-unset PROMPT_COMMAND
-parse_git_branch() {
-  if [ -n "$(git rev-parse --git-dir 2> /dev/null)" ]; then
-    echo "($(git rev-parse --abbrev-ref HEAD))"
-  fi
-}
-export PS1="\[\033[38;5;20m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;2m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;160m\]\w\[$(tput sgr0)\] \$(parse_git_branch) \[\033[38;5;15m\][$SHLVL]\\$ \[$(tput sgr0)\]"
+#unset PROMPT_COMMAND
+#parse_git_branch() {
+#  if [ -n "$(git rev-parse --git-dir 2> /dev/null)" ]; then
+#    echo "($(git rev-parse --abbrev-ref HEAD))"
+#  fi
+#}
+#export PS1="\[\033[38;5;20m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;2m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;160m\]\w\[$(tput sgr0)\] \$(parse_git_branch) \[\033[38;5;15m\][$SHLVL]\\$ \[$(tput sgr0)\]"
 
 # --------
 # - DIRS -

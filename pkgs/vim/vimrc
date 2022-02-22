@@ -14,8 +14,8 @@ endif
 " Install vim-plug plugins
 call plug#begin('~/.vim/plugged')
 " Vim-go/govim (sytanx)
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'govim/govim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'govim/govim'
 " Vim-Puppet (syntax)
 Plug 'rodjek/vim-puppet'
 " Vim-sluth (autoindent)

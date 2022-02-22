@@ -8,6 +8,7 @@ ln -sf "$CUR_DIR/pkgs/bash/bashrc" ~/.bashrc
 ln -sf "$CUR_DIR/pkgs/vim/vimrc" ~/.vimrc
 ln -sf "$CUR_DIR/pkgs/tmux/tmux.conf" ~/.tmux.conf
 ln -sf "$CUR_DIR/pkgs/bash/inputrc" ~/.inputrc
+ln -sf "$CUR_DIR/submodules/oh-my-bash" ~/.oh-my-bash
 if [[ ! -d ~/.config/nvim/init.vim ]]; then
     mkdir -p ~/.config/nvim
 fi
