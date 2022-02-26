@@ -164,7 +164,15 @@ let g:go_highlight_generate_tags = 1
 " ------------------------
 "
 let g:tmuxline_powerline_separators = 0
-let g:tmuxline_preset = 'full'
+let g:tmuxline_preset = {
+        \ 'a': '#S',
+        \ 'b': '#F',
+        \ 'c': '#W',
+        \ 'win': ['#I', '#W'],
+        \ 'cwin': ['#I', '#W'],
+        \ 'x': '%a',
+        \ 'y': ['%b %d', '%R', '#(TZ="UTC" date +%%H:%%M) utc'],
+        \ 'z': '#H'}
 
 " ----------------------
 " - dense-analysis/ale -
