@@ -34,18 +34,6 @@ if [[ -e ~/.local/bin/ ]]; then
    for s in $(ls $CUR_DIR/bin/*.*); do
       ln -sf "$s" ~/.local/bin/
    done
-
-   # SSHRC setup
-   if ! which sshrc 1>/dev/null 2>&1; then
-      if [[ -e "$CUR_DIR/submodules/sshrc/sshrc" ]]; then
-         ln -sf "$CUR_DIR/submodules/sshrc/sshrc" ~/.local/bin/
-         ln -sf ~/.bashrc ~/.sshrc
-         mkdir ~/.sshrc.d/
-         ln -sf ~/.vimrc ~/.sshrc.d/
-      else
-         echo "WARN: sshrc not initialized. Run 'git submodule init && git submodule update'"
-      fi
-   fi
 else
    echo "WARN: '~/.local/bin' does not exist."
 fi
