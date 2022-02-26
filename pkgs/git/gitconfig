@@ -3,3 +3,5 @@
 # Please adapt and uncomment the following lines:
 	name = Devin Trejo
 	email = dtrejod@users.noreply.github.com
+[url "git://"]
+	insteadOf = https://
