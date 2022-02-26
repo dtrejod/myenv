@@ -3,7 +3,9 @@
 # Please adapt and uncomment the following lines:
 	name = Devin Trejo
 	email = dtrejod@users.noreply.github.com
-[url "git://"]
-	insteadOf = https://
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
