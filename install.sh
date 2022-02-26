@@ -8,18 +8,21 @@ ln -sf "$CUR_DIR/pkgs/bash/bashrc" ~/.bashrc
 ln -sf "$CUR_DIR/pkgs/vim/vimrc" ~/.vimrc
 ln -sf "$CUR_DIR/pkgs/tmux/tmux.conf" ~/.tmux.conf
 ln -sf "$CUR_DIR/pkgs/bash/inputrc" ~/.inputrc
-ln -sf "$CUR_DIR/submodules/oh-my-bash" ~/.oh-my-bash
+
+# oh-my-bash
+ln -sfn "$CUR_DIR/submodules/oh-my-bash" ~/.oh-my-bash
+
+# VIM
 if [[ ! -d ~/.config/nvim/init.vim ]]; then
     mkdir -p ~/.config/nvim
 fi
 
-# VIM
-ln -sf "$CUR_DIR/pkgs/nvim/init.vim" ~/.config/nvim/init.vim
+ln -sfn "$CUR_DIR/pkgs/nvim/init.vim" ~/.config/nvim/init.vim
 if [[ ! -d ~/.vim/ftplugin ]]; then
    mkdir -p ~/.vim/ftplugin
 fi
 for s in $(ls $CUR_DIR/pkgs/vim/.vim/ftplugin/*.*); do
-   ln -sf "$s" ~/.vim/ftplugin
+   ln -sfn "$s" ~/.vim/ftplugin
 done
 
 # Source bashrc to pickup changes

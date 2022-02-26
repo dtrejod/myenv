@@ -107,6 +107,13 @@ endif
 "
 let g:airline_theme='minimalist'
 
+" ------------------------
+" - edkolev/tmuxline.vim -
+" ------------------------
+"
+let g:tmuxline_powerline_separators = 0
+let g:tmuxline_preset = 'full'
+
 " ----------
 " - python -
 " ----------
@@ -158,13 +165,6 @@ let g:go_highlight_build_constraints = 1
 let g:go_highlight_types = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_generate_tags = 1
-
-" ------------------------
-" - edkolev/tmuxline.vim -
-" ------------------------
-"
-let g:tmuxline_powerline_separators = 0
-let g:tmuxline_preset = 'full'
 
 " ----------------------
 " - dense-analysis/ale -
