@@ -7,3 +7,5 @@
 	insteadOf = https://github.com/
 [diff]
 	tool = vimdiff
+[merge]
+	tool = vimdiff
