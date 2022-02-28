@@ -107,6 +107,21 @@ endif
 "
 let g:airline_theme='minimalist'
 
+" ------------------------
+" - edkolev/tmuxline.vim -
+" ------------------------
+"
+let g:tmuxline_powerline_separators = 0
+let g:tmuxline_preset = {
+        \ 'a': '#S',
+        \ 'b': '#F',
+        \ 'c': '#W',
+        \ 'win': ['#I', '#W'],
+        \ 'cwin': ['#I', '#W'],
+        \ 'x': '%a',
+        \ 'y': ['%b %d', '%R', '#(TZ="UTC" date +%%H:%%M) utc'],
+        \ 'z': '#H'}
+
 " ----------
 " - python -
 " ----------
@@ -158,21 +173,6 @@ let g:go_highlight_build_constraints = 1
 let g:go_highlight_types = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_generate_tags = 1
-
-" ------------------------
-" - edkolev/tmuxline.vim -
-" ------------------------
-"
-let g:tmuxline_powerline_separators = 0
-let g:tmuxline_preset = {
-        \ 'a': '#S',
-        \ 'b': '#F',
-        \ 'c': '#W',
-        \ 'win': ['#I', '#W'],
-        \ 'cwin': ['#I', '#W'],
-        \ 'x': '%a',
-        \ 'y': ['%b %d', '%R', '#(TZ="UTC" date +%%H:%%M) utc'],
-        \ 'z': '#H'}
 
 " ----------------------
 " - dense-analysis/ale -

@@ -8,18 +8,21 @@ ln -sf "$CUR_DIR/pkgs/bash/bashrc" ~/.bashrc
 ln -sf "$CUR_DIR/pkgs/vim/vimrc" ~/.vimrc
 ln -sf "$CUR_DIR/pkgs/tmux/tmux.conf" ~/.tmux.conf
 ln -sf "$CUR_DIR/pkgs/bash/inputrc" ~/.inputrc
-ln -sf "$CUR_DIR/submodules/oh-my-bash" ~/.oh-my-bash
+
+# oh-my-bash
+ln -sfn "$CUR_DIR/submodules/oh-my-bash" ~/.oh-my-bash
+
+# VIM
 if [[ ! -d ~/.config/nvim/init.vim ]]; then
     mkdir -p ~/.config/nvim
 fi
 
-# VIM
-ln -sf "$CUR_DIR/pkgs/nvim/init.vim" ~/.config/nvim/init.vim
+ln -sfn "$CUR_DIR/pkgs/nvim/init.vim" ~/.config/nvim/init.vim
 if [[ ! -d ~/.vim/ftplugin ]]; then
    mkdir -p ~/.vim/ftplugin
 fi
 for s in $(ls $CUR_DIR/pkgs/vim/.vim/ftplugin/*.*); do
-   ln -sf "$s" ~/.vim/ftplugin
+   ln -sfn "$s" ~/.vim/ftplugin
 done
 
 # Source bashrc to pickup changes
@@ -37,6 +40,22 @@ if [[ -e ~/.local/bin/ ]]; then
 else
    echo "WARN: '~/.local/bin' does not exist."
 fi
+
+if [[ -e ~/.local ]]; then
+   if [[ ! -d ~/.local/fonts/nerd-fonts ]]; then
+      # Download Hack font
+      git clone --filter=blob:none --sparse git@github.com:ryanoasis/nerd-fonts ~/.local/fonts/nerd-fonts
+   fi
+   pushd ~/.local/fonts/nerd-fonts
+   git sparse-checkout add patched-fonts/Hack
+   git sparse-checkout add patched-fonts/UbuntuMono
+   ./install.sh Hack
+   ./install.sh UbuntuMono
+   popd
+
+   echo "Installed fonts."
+fi
+
 
 # Download vim package manager
 if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
