@@ -13,11 +13,6 @@ ln -sf "$CUR_DIR/pkgs/bash/inputrc" ~/.inputrc
 ln -sfn "$CUR_DIR/submodules/oh-my-bash" ~/.oh-my-bash
 
 # VIM
-if [[ ! -d ~/.config/nvim/init.vim ]]; then
-    mkdir -p ~/.config/nvim
-fi
-
-ln -sfn "$CUR_DIR/pkgs/nvim/init.vim" ~/.config/nvim/init.vim
 if [[ ! -d ~/.vim/ftplugin ]]; then
    mkdir -p ~/.vim/ftplugin
 fi
