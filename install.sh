@@ -58,6 +58,9 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
+# Uninstall all plugins not in vimrc
+vim +'PlugClean' +qa
+
 # Install all vim plugins
 vim +'PlugPlugUpgrade --sync' +qa
 vim +'PlugUpdate --sync' +qa

@@ -13,15 +13,6 @@ endif
 "
 " Install vim-plug plugins
 call plug#begin('~/.vim/plugged')
-" Vim-go/govim (sytanx)
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-" Plug 'govim/govim'
-" Vim-Puppet (syntax)
-Plug 'rodjek/vim-puppet'
-" Vim-sluth (autoindent)
-Plug 'tpope/vim-sleuth'
-" vim-terraform (syntax)
-Plug 'hashivim/vim-terraform'
 " vim-airline (UX)
 Plug 'vim-airline/vim-airline'
 " vim-airline-themes (UX)
@@ -34,8 +25,8 @@ Plug 'tpope/vim-rhubarb'
 Plug 'edkolev/tmuxline.vim'
 " ale (async linter)
 Plug 'dense-analysis/ale'
-" jsonnet
-Plug 'google/vim-jsonnet'
+" polygoat (lang/syntax pack)
+Plug 'sheerun/vim-polyglot'
 " Github copilot
 Plug 'github/copilot.vim'
 call plug#end()
@@ -44,8 +35,6 @@ call plug#end()
 " - Default VIM -
 " ---------------
 "
-" reset filetype
-filetype off
 filetype plugin indent on
 
 " Disable mouse
@@ -61,18 +50,29 @@ set signcolumn=number
 " Set syntax always on
 syntax on
 
+" Don't parse modelines (google "vim modeline vulnerability").
+set nomodeline
+
 " Show column/line number stats
 set ruler
 
 " Set Tab equal to four spaces
-if empty(glob("~/.vim/plugged/vim-sleuth"))
-  " Default to 4 spaces
+if empty(glob("~/.vim/plugged/vim-polyglot"))
+  " Default to 4 spaces if auto-indent from plugin is not available
   set expandtab
   set tabstop=4
   set shiftwidth=4
 endif
-set smartindent
+
+" Highlight line under cursor. It helps with navigation.
+set cursorline
+set cursorlineopt=number
+
+" Auto indent when starting a new line
 set autoindent
+
+" Smart indent tries to indent the next line based on style of the code
+set smartindent
 
 " Set
 set regexpengine=0
@@ -85,15 +85,23 @@ imap <S-Tab> <C-o><<
 
 " Show Tabs
 set list
-set listchars=tab:>-
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 
 " Show line numbers
 set number
+
+" Reload unchanged files automatically.
+set autoread
 
 " Show vertical line at and set width to 120 chars
 set colorcolumn=120
 set textwidth=120
 set formatoptions-=t
+
+" Delete comment character when joining commented lines
+if v:version > 703 || v:version == 703 && has("patch541")
+  set formatoptions+=j
+endif
 
 " Tab completion on tab
 set wildmode=longest,list,full
@@ -108,17 +116,22 @@ if has("autocmd")
       au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
+" Improve displayed color if supported by terminal
+if $TERM_PROGRAM ==# 'iTerm.app' || $TERM_PROGRAM ==# 'tmux'
+  " Enable termguicolors if supported by terminal
+  set termguicolors
+end
+
+set background=dark
+
+" set highlight group colors. Sets foreground color to gray and background to darkblue
+highlight Pmenu ctermfg=grey guibg=darkblue
+
 " ----------------------
 " - vim-airline-themes -
 " ----------------------
 "
 let g:airline_theme='minimalist'
-if $TERM_PROGRAM ==# 'iTerm.app' || $TERM_PROGRAM ==# 'tmux'
-  " Enable termguicolors if supported by terminal
-  set termguicolors
-endif
-
-set background=dark
 
 " ------------------------
 " - edkolev/tmuxline.vim -
