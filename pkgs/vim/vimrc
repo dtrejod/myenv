@@ -34,6 +34,10 @@ Plug 'tpope/vim-rhubarb'
 Plug 'edkolev/tmuxline.vim'
 " ale (async linter)
 Plug 'dense-analysis/ale'
+" jsonnet
+Plug 'google/vim-jsonnet'
+" Github copilot
+Plug 'github/copilot.vim'
 call plug#end()
 
 " ---------------
@@ -70,6 +74,9 @@ endif
 set smartindent
 set autoindent
 
+" Set
+set regexpengine=0
+
 " Set backspace to work like normal
 set backspace=2
 
@@ -87,8 +94,6 @@ set number
 set colorcolumn=120
 set textwidth=120
 set formatoptions-=t
-
-set background=dark
 
 " Tab completion on tab
 set wildmode=longest,list,full
@@ -108,6 +113,12 @@ endif
 " ----------------------
 "
 let g:airline_theme='minimalist'
+if $TERM_PROGRAM ==# 'iTerm.app' || $TERM_PROGRAM ==# 'tmux'
+  " Enable termguicolors if supported by terminal
+  set termguicolors
+endif
+
+set background=dark
 
 " ------------------------
 " - edkolev/tmuxline.vim -
@@ -121,7 +132,7 @@ let g:tmuxline_preset = {
         \ 'win': ['#I', '#W'],
         \ 'cwin': ['#I', '#W'],
         \ 'x': '%a',
-        \ 'y': ['%b %d', '%R', '#(TZ="UTC" date +%%H:%%M) utc'],
+        \ 'y': ['%b %d', '%R', '#(TZ="PST8PDT" date +%%H:%%M) pst', '#(TZ="UTC" date +%%H:%%M) utc'],
         \ 'z': '#H'}
 
 " ----------
@@ -163,7 +174,8 @@ let g:go_autodetect_gopath = 1
 let g:go_list_type = "quickfix"
 
 " Linter
-let g:go_metalinter_autosave_enabled=['golint', 'govet']
+let g:go_metalinter_autosave_enabled=['gopls']
+let g:go_metalinter_command="gopls"
 
 " set tmpl files as go syntax
 au BufNewFile,BufRead,BufReadPost *.tmpl set syntax=go
@@ -181,6 +193,23 @@ let g:go_highlight_generate_tags = 1
 " ----------------------
 "
 let g:airline#extensions#ale#enabled = 1
+let g:ale_go_golangci_lint_package=1
+
+let g:ale_fixers = {}
+let g:ale_fixers.javascript = ['eslint']
+let g:ale_fix_on_save = 1
+" need to do
+" npm install -g javascript-typescript-langserver
+" for this to work
+if executable('javascript-typescript-stdio')
+  au User lsp_setup call lsp#register_server({
+    \ 'name': 'javascript-typescript-stdio',
+    \ 'cmd': {server_info->['javascript-typescript-stdio']},
+    \ 'whitelist': ['typescript', 'javascript', 'typescript.tsx'],
+    \ })
+endif
+
+set omnifunc=ale#completion#OmniFunc
 
 " ----------
 " - macros -
