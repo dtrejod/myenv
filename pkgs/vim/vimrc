@@ -27,6 +27,8 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'dense-analysis/ale'
 " polygoat (lang/syntax pack)
 Plug 'sheerun/vim-polyglot'
+" vim-go (lang/syntax)
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Github copilot
 Plug 'github/copilot.vim'
 call plug#end()
@@ -56,13 +58,10 @@ set nomodeline
 " Show column/line number stats
 set ruler
 
-" Set Tab equal to four spaces
-if empty(glob("~/.vim/plugged/vim-polyglot"))
-  " Default to 4 spaces if auto-indent from plugin is not available
-  set expandtab
-  set tabstop=4
-  set shiftwidth=4
-endif
+" Prefer spaces over tabs. Set tab equal to four spaces
+set expandtab
+set tabstop=4
+set shiftwidth=4
 
 " Highlight line under cursor. It helps with navigation.
 set cursorline
