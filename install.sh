@@ -65,4 +65,7 @@ vim +'PlugClean' +qa
 vim +'PlugPlugUpgrade --sync' +qa
 vim +'PlugUpdate --sync' +qa
 
+# Upgrade oh-my-bash
+upgrade_oh_my_bash
+
 echo "Done!"

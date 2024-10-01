@@ -29,6 +29,8 @@ Plug 'dense-analysis/ale'
 Plug 'sheerun/vim-polyglot'
 " vim-go (lang/syntax)
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" nerdtree (file explorer)
+Plug 'preservim/nerdtree'
 " Github copilot
 Plug 'github/copilot.vim'
 call plug#end()
