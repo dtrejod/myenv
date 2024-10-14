@@ -11,6 +11,9 @@ ln -sf "$CUR_DIR/pkgs/bash/inputrc" ~/.inputrc
 
 # oh-my-bash
 ln -sfn "$CUR_DIR/submodules/oh-my-bash" ~/.oh-my-bash
+set +x
+source ~/.oh-my-bash/tools/upgrade.sh # Upgrade oh-my-bash
+set -x
 
 # VIM
 if [[ ! -d ~/.vim/ftplugin ]]; then
@@ -64,8 +67,5 @@ vim +'PlugClean' +qa
 # Install all vim plugins
 vim +'PlugPlugUpgrade --sync' +qa
 vim +'PlugUpdate --sync' +qa
-
-# Upgrade oh-my-bash
-upgrade_oh_my_bash
 
 echo "Done!"

@@ -78,7 +78,7 @@ aliases=(
 plugins=(
   git
   bashmarks
-  brew
+  kubectl
 )
 
 source "$OSH"/oh-my-bash.sh
