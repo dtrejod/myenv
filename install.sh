@@ -39,21 +39,6 @@ else
    echo "WARN: '~/.local/bin' does not exist."
 fi
 
-if [[ -e ~/.local ]]; then
-   if [[ ! -d ~/.local/fonts/nerd-fonts ]]; then
-      # Download Hack font
-      git clone --filter=blob:none --sparse git@github.com:ryanoasis/nerd-fonts ~/.local/fonts/nerd-fonts
-   fi
-   pushd ~/.local/fonts/nerd-fonts
-   git sparse-checkout add patched-fonts/Hack
-   git sparse-checkout add patched-fonts/UbuntuMono
-   ./install.sh Hack
-   ./install.sh UbuntuMono
-   popd
-
-   echo "Installed fonts."
-fi
-
 # Ghostty
 case "$(uname -s)" in
     Linux*)
