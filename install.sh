@@ -54,6 +54,23 @@ if [[ -e ~/.local ]]; then
    echo "Installed fonts."
 fi
 
+# Ghostty
+case "$(uname -s)" in
+    Linux*)
+        if [[ ! -f ~/.local/bin/ghostty/config ]]; then
+            ln -s $CUR_DIR/pkgs/ghostty/config ~/.local/bin/ghostty/config
+        fi
+        ;;
+    Darwin*)
+        if [[ ! -f ~/Library/Application\ Support/com.mitchellh.ghostty/config ]]; then
+            ln -s $CUR_DIR/pkgs/ghostty/config ~/Library/Application\ Support/com.mitchellh.ghostty/config
+        fi
+        ;;
+    *)
+        echo "WARN: Unknown OS. Skipping ghostty configuration setup."
+        ;;
+esac
+
 
 # Download vim package manager
 if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
