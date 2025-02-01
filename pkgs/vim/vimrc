@@ -118,7 +118,7 @@ if has("autocmd")
 endif
 
 " Improve displayed color if supported by terminal
-if $TERM_PROGRAM ==# 'iTerm.app' || $TERM_PROGRAM ==# 'tmux'
+if $TERM_PROGRAM ==# 'iTerm.app' || $TERM_PROGRAM ==# 'tmux' || $TERM_PROGRAM ==# 'ghostty'
   " Enable termguicolors if supported by terminal
   set termguicolors
 end
