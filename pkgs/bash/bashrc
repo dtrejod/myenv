@@ -88,6 +88,13 @@ source "$OSH"/oh-my-bash.sh
 # ------
 export GOPATH=~/Documents/projects/gowork
 
+# --------
+# - rust -
+# --------
+
+# cargo fetch using git cli
+CARGO_NET_GIT_FETCH_WITH_CLI=true
+
 # --------------
 # - Setup Path -
 # --------------
@@ -167,6 +174,9 @@ elif [[ $(uname) == "Darwin" ]]; then
     if [[ -e /usr/local/opt/gnu-tar/libexec/gnubin/tar ]]; then
         export PATH="/usr/local/opt/gnu-tar/libexec/gnubin/:$PATH"
     fi
+
+    # on mac tell terminals to stop sending bracketed paste
+    printf '\e[?2004l'
 fi
 
 if which evince >/dev/null 2>&1; then
