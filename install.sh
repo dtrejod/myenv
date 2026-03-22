@@ -55,6 +55,8 @@ case "$(uname -s)" in
         echo "WARN: Unknown OS. Skipping ghostty configuration setup."
         ;;
 esac
+# Install argonaut theme for ghostty
+mkdir -p ~/.config/ghostty/themes && curl -sfL "https://ghostty-style.vercel.app/api/configs/5006be7b-b5c3-4caf-bd7c-1db48b1f35a8/download" > ~/.config/ghostty/themes/argonaut
 
 
 # Download vim package manager
