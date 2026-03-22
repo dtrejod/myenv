@@ -31,6 +31,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " nerdtree (file explorer)
 Plug 'preservim/nerdtree'
+" vim-rust (lang/syntax)
+Plug 'rust-lang/rust.vim'
 " Github copilot
 Plug 'github/copilot.vim'
 call plug#end()
@@ -208,9 +210,16 @@ let g:go_highlight_generate_tags = 1
 "
 let g:airline#extensions#ale#enabled = 1
 let g:ale_go_golangci_lint_package=1
+let g:ale_completion_enabled = 1
+
+" rust
+let g:ale_linters = {'rust': ['analyzer']}
+let g:ale_rust_analyzer_config = {'cargo': {'buildScripts': {'enable': v:false}}, 'procMacro': {'enable': v:false}}
 
 let g:ale_fixers = {}
+let g:ale_fixers.rust = ['rustfmt', 'trim_whitespace', 'remove_trailing_lines']
 let g:ale_fixers.javascript = ['eslint']
+
 let g:ale_fix_on_save = 1
 " need to do
 " npm install -g javascript-typescript-langserver
